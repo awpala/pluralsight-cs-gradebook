@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GradeBook {
   public class Book {
-    public string Name;
+    public string Name { get; private set; }
     private List<double> grades;
 
     public Book(string name) {
