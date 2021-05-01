@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace GradeBook {
   public class Book {
-    private string name;
+    public string Name;
     private List<double> grades;
 
     public Book(string name) {
-      this.name = name;
+      Name = name;
       grades = new List<double>();
     }
 

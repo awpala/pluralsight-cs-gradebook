@@ -5,7 +5,7 @@ namespace GradeBook.Tests
 {
   public class BookTests {
     [Fact] // N.B. `[...]` denotes an attribute
-    public void StatisticsTest() {
+    public void BookCalculatesAnAverageGrade() {
       // arrange
       var book = new Book("");
       book.AddGrade(89.1);
