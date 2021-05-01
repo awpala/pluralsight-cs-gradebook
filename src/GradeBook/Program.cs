@@ -22,7 +22,7 @@ namespace GradeBook {
       Console.WriteLine($"The average letter grade is {stats.Letter}");
     }
 
-    private static void EnterGrades(Book book) { // `EnterGrades()` can work polymorphically with both types `Book` and `InMemoryBook`
+    private static void EnterGrades(IBook book) { // `EnterGrades()` can work polymorphically with both types `Book` and `InMemoryBook`
       while (true)
       {
         Console.WriteLine("Enter a grade or `q` to quit");

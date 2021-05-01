@@ -6,7 +6,7 @@ namespace GradeBook {
   
   public class InMemoryBook : Book {
     private List<double> grades;
-    public event GradeAddedDelegate GradeAdded;
+    public override event GradeAddedDelegate GradeAdded; // overrides delegate `GradeAdded` of abstract base class `Book`
 
     public InMemoryBook(string name): base(name) { // keyword `base` is used to call constructor of base class `NamedObject`
       Name = name;
@@ -44,7 +44,7 @@ namespace GradeBook {
       }
     }
 
-    public Statistics GetStatistics() {
+    public override Statistics GetStatistics() { // overrides method `GetStatistics()` of abtract base class `Book`
       var result = new Statistics();
       result.Average = 0.0;
       result.LowestGrade = double.MaxValue;
