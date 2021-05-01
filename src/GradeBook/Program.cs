@@ -6,15 +6,23 @@ namespace GradeBook {
       var book = new Book("Scott's Grade Book");
 
       while(true) {
-        Console.WriteLine("Enter a grade or `a` to quit");
+        Console.WriteLine("Enter a grade or `q` to quit");
         var input = Console.ReadLine();
 
         if(input.ToLower() == "q") {
           break;
         }
 
-        var grade = double.Parse(input);
-        book.AddGrade(grade);
+        try {
+          var grade = double.Parse(input);
+          book.AddGrade(grade);
+        } catch (ArgumentException ex) {
+          Console.WriteLine(ex.Message);
+        } catch (FormatException ex) {
+          Console.WriteLine(ex.Message);
+        } finally {
+          Console.WriteLine("**");
+        }
       }
 
       var stats = book.GetStatistics();
