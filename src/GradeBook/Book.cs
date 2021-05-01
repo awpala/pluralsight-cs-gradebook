@@ -4,12 +4,11 @@ using System.Collections.Generic;
 namespace GradeBook {
   public delegate void GradeAddedDelegate(object sender, EventArgs args); // N.B. By convention, in C#.NET event delegates are defined with these two parameters
   
-  public class Book {
-    public string Name { get; /* private */ set; } // can designate setter to `private` to prevent setting
+  public class Book : NamedObject {
     private List<double> grades;
     public event GradeAddedDelegate GradeAdded;
 
-    public Book(string name) {
+    public Book(string name): base(name) { // keyword `base` is used to call constructor of base class `NamedObject`
       Name = name;
       grades = new List<double>();
     }
@@ -79,6 +78,5 @@ namespace GradeBook {
 
       return result;
     }
-
   }
 }
