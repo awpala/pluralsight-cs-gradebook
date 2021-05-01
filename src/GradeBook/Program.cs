@@ -6,29 +6,12 @@ namespace GradeBook {
       Console.WriteLine("A grade was added.");
     }
 
-    static void Main(string[] args) {
+    static void Main(string[] args)
+    {
       var book = new Book("Scott's Grade Book");
       book.GradeAdded += OnGradeAdded;
 
-      while(true) {
-        Console.WriteLine("Enter a grade or `q` to quit");
-        var input = Console.ReadLine();
-
-        if(input.ToLower() == "q") {
-          break;
-        }
-
-        try {
-          var grade = double.Parse(input);
-          book.AddGrade(grade);
-        } catch (ArgumentException ex) {
-          Console.WriteLine(ex.Message);
-        } catch (FormatException ex) {
-          Console.WriteLine(ex.Message);
-        } finally {
-          Console.WriteLine("**");
-        }
-      }
+      EnterGrades(book);
 
       var stats = book.GetStatistics();
 
@@ -37,6 +20,30 @@ namespace GradeBook {
       Console.WriteLine($"The highest grade is {stats.HighestGrade}");
       Console.WriteLine($"The average grade is {stats.Average:N1}");
       Console.WriteLine($"The average letter grade is {stats.Letter}");
+    }
+
+    private static void EnterGrades(Book book) {
+      while (true)
+      {
+        Console.WriteLine("Enter a grade or `q` to quit");
+        var input = Console.ReadLine();
+
+        if (input.ToLower() == "q") {
+          break;
+        }
+
+        try {
+          var grade = double.Parse(input);
+          book.AddGrade(grade);
+        } catch (ArgumentException ex) {
+          Console.WriteLine(ex.Message);
+        }
+        catch (FormatException ex) {
+          Console.WriteLine(ex.Message);
+        } finally {
+          Console.WriteLine("**");
+        }
+      }
     }
   }
 }
