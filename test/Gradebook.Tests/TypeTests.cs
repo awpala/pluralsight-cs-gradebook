@@ -4,8 +4,8 @@ using Xunit;
 namespace GradeBook.Tests
 {
   public class TypeTests {
-    Book GetBook(string name) {
-      return new Book(name);
+    InMemoryBook GetBook(string name) {
+      return new InMemoryBook(name);
     }
 
     [Fact]
@@ -40,7 +40,7 @@ namespace GradeBook.Tests
     }
 
     private void GetBookSetName(Book book, string name) {
-      book = new Book(name); // parameter `book` (local variable) receives a new object reference, while the argument passed in retains its original object reference
+      book = new InMemoryBook(name); // parameter `book` (local variable) receives a new object reference, while the argument passed in retains its original object reference
       book.Name = name; // no net effect -- acts on `book` rather than the object from the argument
     }
 
@@ -52,8 +52,8 @@ namespace GradeBook.Tests
       Assert.Equal("Book 1", book1.Name); // is not "New Name" -- a separate object is created inside of function `GetBookSetName()`, `book1` (which was passed by value) remains unchanged
     }
 
-    private void GetBookRefSetName(ref Book book, string name) { // kewyord `ref` changes parameter behavior from pass by value (default) to pass by reference
-      book = new Book(name);
+    private void GetBookRefSetName(ref InMemoryBook book, string name) { // kewyord `ref` changes parameter behavior from pass by value (default) to pass by reference
+      book = new InMemoryBook(name);
       book.Name = name;
     }
 

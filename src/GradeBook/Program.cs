@@ -8,7 +8,7 @@ namespace GradeBook {
 
     static void Main(string[] args)
     {
-      var book = new Book("Scott's Grade Book");
+      var book = new InMemoryBook("Scott's Grade Book");
       book.GradeAdded += OnGradeAdded;
 
       EnterGrades(book);
@@ -22,7 +22,7 @@ namespace GradeBook {
       Console.WriteLine($"The average letter grade is {stats.Letter}");
     }
 
-    private static void EnterGrades(Book book) {
+    private static void EnterGrades(Book book) { // `EnterGrades()` can work polymorphically with both types `Book` and `InMemoryBook`
       while (true)
       {
         Console.WriteLine("Enter a grade or `q` to quit");
@@ -34,7 +34,7 @@ namespace GradeBook {
 
         try {
           var grade = double.Parse(input);
-          book.AddGrade(grade);
+          book.AddGrade(grade); // calls method `AddGrade()` polymorphically
         } catch (ArgumentException ex) {
           Console.WriteLine(ex.Message);
         }
