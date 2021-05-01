@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 
 namespace GradeBook {
+  public delegate void GradeAddedDelegate(object sender, EventArgs args); // N.B. By convention, in C#.NET event delegates are defined with these two parameters
+  
   public class Book {
     public string Name { get; /* private */ set; } // can designate setter to `private` to prevent setting
     private List<double> grades;
-    public delegate void GradeAddedDelegate(object sender, EventArgs args); // N.B. By convention, in C#.NET event delegates are defined with these two parameters
     public event GradeAddedDelegate GradeAdded;
 
     public Book(string name) {
