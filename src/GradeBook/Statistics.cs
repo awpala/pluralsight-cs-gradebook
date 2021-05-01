@@ -3,5 +3,6 @@ namespace GradeBook {
     public double LowestGrade;
     public double HighestGrade;
     public double Average;
+    public char Letter;
   }
 }
