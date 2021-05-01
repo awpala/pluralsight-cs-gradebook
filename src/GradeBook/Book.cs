@@ -5,6 +5,8 @@ namespace GradeBook {
   public class Book {
     public string Name { get; /* private */ set; } // can designate setter to `private` to prevent setting
     private List<double> grades;
+    public delegate void GradeAddedDelegate(object sender, EventArgs args); // N.B. By convention, in C#.NET event delegates are defined with these two parameters
+    public event GradeAddedDelegate GradeAdded;
 
     public Book(string name) {
       Name = name;
@@ -34,6 +36,9 @@ namespace GradeBook {
     public void AddGrade(double grade) {
       if (grade >= 0 && grade <= 100) {
         grades.Add(grade);
+        if (GradeAdded != null) {
+          GradeAdded(this, new EventArgs());
+        }
       } else {
         throw new ArgumentException($"Invalid {nameof(grade)}");
       }
@@ -73,5 +78,6 @@ namespace GradeBook {
 
       return result;
     }
+
   }
 }

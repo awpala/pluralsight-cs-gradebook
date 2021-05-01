@@ -2,8 +2,13 @@
 
 namespace GradeBook {
   class Program {
+    static void OnGradeAdded(object sender, EventArgs e) { // delegate event handler
+      Console.WriteLine("A grade was added.");
+    }
+
     static void Main(string[] args) {
       var book = new Book("Scott's Grade Book");
+      book.GradeAdded += OnGradeAdded;
 
       while(true) {
         Console.WriteLine("Enter a grade or `q` to quit");
