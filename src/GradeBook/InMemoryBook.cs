@@ -46,34 +46,9 @@ namespace GradeBook {
 
     public override Statistics GetStatistics() { // overrides method `GetStatistics()` of abtract base class `Book`
       var result = new Statistics();
-      result.Average = 0.0;
-      result.LowestGrade = double.MaxValue;
-      result.HighestGrade = double.MinValue;
 
       foreach (var grade in grades) {
-        result.LowestGrade = Math.Min(grade, result.LowestGrade);
-        result.HighestGrade = Math.Max(grade, result.HighestGrade);
-        result.Average += grade;
-      }
-
-      result.Average /= grades.Count;
-
-      switch (result.Average) {
-        case var d when d >= 90:
-          result.Letter = 'A';
-          break;
-        case var d when d >= 80:
-          result.Letter = 'B';
-          break;
-        case var d when d >= 70:
-          result.Letter = 'C';
-          break;
-        case var d when d >= 60:
-          result.Letter = 'D';
-          break;
-        default:
-          result.Letter = 'F';
-          break;
+        result.Add(grade);
       }
 
       return result;
